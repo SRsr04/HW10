@@ -31,18 +31,19 @@ class Record:
         self.phones = []
     
     def add_phone(self, phone):
-        if isinstance(phone, Phone):
-            self.phones.append(phone)
+        # if isinstance(phone, Phone):
+        self.phones.append(Phone(phone))
 
     def remove_phone(self, phone):
-        if phone in self.phones:
-            self.phones.remove(phone)
+        for p in self.phones:
+            if p.value == phone:
+                self.phones.remove(p)
 
     def edit_phone(self, old_phone, new_phone):
         for i, p in enumerate(self.phones):
             if p.value == old_phone:
-                if isinstance(new_phone, Phone):
-                    self.phones[i] = new_phone
+                # if isinstance(new_phone, Phone):
+                self.phones[i] = Phone(new_phone)
                 return 
         raise ValueError("Phone number not found")  
 
